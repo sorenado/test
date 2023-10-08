@@ -1,3 +1,4 @@
+count = 10;
 const countingDown = () => {
     document.getElementById("countdown").style.display("block");
     let count = document.getElementByID("countdown").innerHTML;
