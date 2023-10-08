@@ -2,6 +2,8 @@ h1{
     font-family: Arial, Helvetica, sans-serif;
 }
 #countdown{
-    font-size: large;
+    font-size: 200px;
     display: none;
+    font-family: Arial;
+
 }

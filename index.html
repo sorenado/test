@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet/css" href="style.css">
-        <script src="script.js"></script>
+        <link rel="stylesheet" href="style.css">
+        
     </head>
     <body>
         <h1>Countdown</h1>
-        <button id="butt">Click here to start a countdown</button>
-        <p id="countdown" onclick="setInterval(countingDown, 1000)">text</p>
+        <label for="countN">Enter a number for countdown (Seconds)<br></label> <input type="number" id="countN"><br><br>
+        <button onclick="startTim()" id="butt">Click here to start the countdown</button>
+        <p id="countdown">1</p>
+        <script src="script.js"></script>
     </body>
 </html>
