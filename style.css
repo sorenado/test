@@ -3,4 +3,5 @@ h1{
 }
 #countdown{
     font-size: large;
+    display: none;
 }
