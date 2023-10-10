@@ -11,13 +11,13 @@
     left:0;
     top:0;
 }
-.topbutton{
+#topbutton{
     border-color: white;
     border-width:2px;
     padding: 10px;
 
 }
-.topbutton img{
+#topbutton img{
 
     width: 10px;
     height: 10px;
@@ -25,9 +25,10 @@
 .content{
     margin-top: 70px;
 }
-.menu{
+#menu{
     text-align: right;
     position: absolute;
     right: -90px;
-    
+
+    background-color: black;
 }
