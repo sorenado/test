@@ -29,6 +29,12 @@
     text-align: right;
     position: absolute;
     right: -90px;
-
+    display: none;
     background-color: black;
+    color: white;
+}
+#menu .act{
+    position: absolute;
+    right: 0;
+    color: black;
 }
