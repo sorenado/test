@@ -30,7 +30,7 @@
     position: absolute;
     right: -90px;
     display: none;
-    background-color: black;
+    background-color: rgb(45, 45, 45);
     color: white;
 }
 #menu.act{
