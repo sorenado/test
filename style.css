@@ -27,7 +27,7 @@
 }
 #menu{
     text-align: right;
-    position: absolute;
+    position: fixed;
     right: -34%;
     display: none;
     background-color: rgb(45, 45, 45);
