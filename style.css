@@ -37,6 +37,6 @@
     width: 33%;
 }
 #menu.act{
-    position: absolute;
+    position: fixed;
     right: 0;
 }
