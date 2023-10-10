@@ -33,7 +33,7 @@
     background-color: black;
     color: white;
 }
-#menu .act{
+#menu.act{
     position: absolute;
     right: 0;
     color: black;
