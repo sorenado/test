@@ -22,3 +22,12 @@
     width: 10px;
     height: 10px;
 }
+.content{
+    margin-top: 70px;
+}
+.menu{
+    text-align: right;
+    position: absolute;
+    right: -90px;
+    
+}
