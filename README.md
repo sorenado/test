@@ -13,5 +13,7 @@ This is a test.
 Because I want to get better at code. That's why zawg.
 # How can I help?
 Pull requests exist.  
-That and you could just create issues in the issues tab.
+
+That and you could just create issues in the issues tab.  
+
 Make sure it's worthwhile.
