@@ -57,6 +57,8 @@
     font-family: Arial, Helvetica, sans-serif;
     opacity: 100%;
     text-align: center;
+    letter-spacing: 2px;
+    word-spacing: 4px;
     animation: fadeIn 2s;
 }
 
