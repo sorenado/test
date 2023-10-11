@@ -2,7 +2,7 @@ let setTimer;
 const actualCount = document.getElementById("countdown");
 let count = 1;
 function startTim(){
-  /*when button pressed, check if timer is running*/
+  //when button pressed, check if timer is running
   if(!setTimer){
     count = parseInt(document.getElementById("countN").value.trim());
     if(count > 0){
