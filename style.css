@@ -53,3 +53,18 @@
     text-align: left;
     padding-left: 3px;
 }
+#topheading{
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: 100%;
+    text-align: center;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0%;
+    }
+    to{
+        opacity: 100%;
+    }
+}
