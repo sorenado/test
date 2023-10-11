@@ -3,11 +3,15 @@
 # Welcome!
 Learn everything you need to know about this repo in this MD!
 # Table of Contents
-[test](#test)  
-[Why?](#why)  
-[How can I help?](#how-can-i-help)  
 
-# test
+## What
+* [What is this?](#what-is-this)  
+## Reason
+* [Why?](#why)  
+## Extra
+* [How can I help?](#how-can-i-help)  
+
+# What is this?
 This is a test.
 # Why?
 Because I want to get better at code. That's why zawg.
