@@ -3,6 +3,7 @@ Learn everything you need to know about this repo in this MD!
 # Table of Contents
 [test](#test)  
 [Why?](#why)
+[How can I help?](#how-can-i-help)
 
 # test
 This is a test.
