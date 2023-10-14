@@ -4,6 +4,7 @@ let count = 1;
 function startTim(){
   //when button pressed, check if timer is running
   if(!setTimer){
+    // get value from user input  
     count = parseInt(document.getElementById("countN").value.trim());
     if(count > 0){
       actualCount.innerHTML = count;
