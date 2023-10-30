@@ -15,7 +15,7 @@ function guessNumber(){
 }
 
 function checkForTrue(){
-    if(guessNumber()){
+    if(guessNumber() === true){
         correct.style.display = "block";
         incorrect.style.display = "none";
     }else{

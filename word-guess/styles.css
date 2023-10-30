@@ -6,7 +6,7 @@ body{
 }
 #correct{
     color: green;
-    display:none;
+    display: none;
 }
 #incorrect{
     color: red;
