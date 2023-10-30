@@ -34,7 +34,7 @@ function checkUserRetry(){
 }
 
 function checkEnterPress(e){
-    if(e.key === "Enter" && guessBox.value !== "" || guessBox.value !== " "){
+    if(e.key === "Enter"){
         checkForTrue();
     }
 }
