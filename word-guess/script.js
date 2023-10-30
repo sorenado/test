@@ -32,6 +32,12 @@ function checkUserRetry(){
     }
 }
 
+function checkEnterPress(e){
+    if(e.key === "Enter"){
+        checkForTrue();
+    }
+}
 checkButton.addEventListener("click", checkForTrue);
 guessBox.addEventListener("keypress", checkUserRetry);
+guessBox.addEventListener("keypress", checkEnterPress);
 
