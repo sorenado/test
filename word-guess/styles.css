@@ -1,0 +1,14 @@
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+#correct{
+    color: green;
+    display:none;
+}
+#incorrect{
+    color: red;
+    display: none;
+}
