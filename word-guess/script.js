@@ -1,9 +1,9 @@
 const words = ["sus", "amongus", "imposter"];
 const userGuess = document.getElementById("user-guess").value;
-lowerGuess = userGuess.toLowerCase();
+const lowerGuess = userGuess.toLowerCase();
 const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
-checkButton = document.getElementById("check");
+const checkButton = document.getElementById("check");
 
 function guessNumber(){
     for(let i = 0; i < words.length; i++){
