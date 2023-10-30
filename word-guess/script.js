@@ -1,5 +1,5 @@
 const words = ["sus", "amongus", "imposter"];
-const correct = document.getElementById("correct");
+const correct = document.getElementsByClassName("correct");
 const incorrect = document.getElementById("incorrect");
 const checkButton = document.getElementById("check");
 const guessBox = document.getElementById("user-guess");
