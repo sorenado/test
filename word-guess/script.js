@@ -1,9 +1,9 @@
 const words = ["sus", "amongus", "imposter"];
-const correct = document.getElementsByClassName("correct");
+const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
 const checkButton = document.getElementById("check");
 const guessBox = document.getElementById("user-guess");
-
+const otherContent = document.getElementById("more-info")
 function guessNumber(userGuess){
     const lowerGuess = userGuess.toLowerCase();
     for(let i = 0; i < words.length; i++){
@@ -19,6 +19,7 @@ function checkForTrue(){
     if(guessNumber(userGuess) === true){
         correct.style.display = "block";
         incorrect.style.display = "none";
+        otherContent.style.display = "block";
     }else{
         incorrect.style.display = "block";
         correct.style.display = "none";
