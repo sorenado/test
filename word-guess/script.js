@@ -22,7 +22,7 @@ function checkForTrue(){
     }else{
         incorrect.style.display = "block";
         correct.style.display = "none";
-        userGuess = "";
+        guessBox.value = "";
     }
 }
 
