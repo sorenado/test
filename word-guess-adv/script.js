@@ -25,6 +25,12 @@ function generateHangmanBars(word){
     hangmanBars = "-" * word.length;
 };
 
+ 
+function displayBars(){
+    let cont = `<p>${}</p>`;
+    hangmanContent.innerHTML = cont;
+}
+
 function checkForTrue(){
     const userGuess = document.getElementById("user-guess").value;
     if(guessNumber(userGuess) === true){
