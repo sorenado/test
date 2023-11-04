@@ -3,16 +3,24 @@ const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
 const checkButton = document.getElementById("check");
 const guessBox = document.getElementById("user-guess");
+const hangmanContent = document.getElementById("hangman-content");
+let correctWord = Math.floor(Math.random() * words + 1); // Random number from 1 to words length 
+let hangmanBars = [];
 
-function guessNumber(userGuess){
-    const lowerGuess = userGuess.toLowerCase();
+
+let spacedWords = [];
+// Spaces the words so each individual character can be checked
+function seperateWords(words){
     for(let i = 0; i < words.length; i++){
-        if(lowerGuess === words[i]){
-            return true;
-            break;
-        }
-    }
-}
+        let spaced = words[i].split('');
+        spacedWords.push(spaced);
+
+    };
+};
+
+function generateHangmanBars(word){
+    hangmanBars = "-" * word.length;
+};
 
 function checkForTrue(){
     const userGuess = document.getElementById("user-guess").value;
