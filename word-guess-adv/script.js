@@ -5,7 +5,7 @@ const checkButton = document.getElementById("check");
 const guessBox = document.getElementById("user-guess");
 const hangmanContent = document.getElementById("hangman-content");
 let correctWord = Math.floor(Math.random() * words + 1); // Random number from 1 to words length 
-let hangmanBars = [];
+
 
 
 let spacedWords = [];
@@ -18,6 +18,9 @@ function seperateWords(words){
     };
 };
 
+
+
+let hangmanBars = [];
 function generateHangmanBars(word){
     hangmanBars = "-" * word.length;
 };
