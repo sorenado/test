@@ -1,3 +1,5 @@
+
+
 body{
     background-color: black;
     color: white;
@@ -11,4 +13,12 @@ body{
 #incorrect{
     color: red;
     display: none;
+}
+
+#input-to-user{
+  opacity: 100%;
+  transition: 4s ease-in;
+}
+#input-to-user.incorrect{
+  opacity: 0%;
 }

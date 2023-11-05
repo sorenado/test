@@ -6,6 +6,9 @@ const guessBox = document.getElementById("user-guess");
 const hangmanContent = document.getElementById("hangman-content");
 let correctWord = words[Math.floor(Math.random() * words.length)]; // Random number from 1 to words length 
 console.log(correctWord);
+let guessCount = 6;
+const outputSection = document.getElementById("input-to-user");
+console.log(outputSection);
 
 
 
@@ -41,16 +44,33 @@ function checkForTrue() {
     let hangmanSplit = hangmanBarsMerge.split("");
     console.log(hangmanSplit);
     for(let i = 0; i < correctWord.length; i++){
-      if (seperateWords(correctWord)[i] === userGuess){
+      if(seperateWords(correctWord)[i] === userGuess){
         hangmanSplit[i] = userGuess;
-      } else {
-        console.log("bad");
-      
       }
     }
+    
+ 
     console.log(hangmanSplit);
     hangmanContent.innerHTML = hangmanSplit.join('');
     hangmanBarsMerge = hangmanSplit.join('');
+
+  } else {
+    guessCount = guessCount - 1;
+    outputSection.innerHTML = `You have ${guessCount} guesses left.`
+    checkCounts();
+  }
+
+
+
+}
+
+function checkCounts(){
+  console.log("checking");
+  if(guessCount === 0){
+    guessBox.disabled = true;
+    console.log("uh oh");
+    outputSection.classList.add("incorrect");
+    checkButton.disabled = true;
   }
 }
 
