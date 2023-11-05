@@ -43,13 +43,13 @@ function checkForTrue() {
     console.log("it is true.");
     let hangmanSplit = hangmanBarsMerge.split("");
     console.log(hangmanSplit);
-    for(let i = 0; i < correctWord.length; i++){
-      if(seperateWords(correctWord)[i] === userGuess){
+    for (let i = 0; i < correctWord.length; i++) {
+      if (seperateWords(correctWord)[i] === userGuess) {
         hangmanSplit[i] = userGuess;
       }
     }
-    
- 
+
+
     console.log(hangmanSplit);
     hangmanContent.innerHTML = hangmanSplit.join('');
     hangmanBarsMerge = hangmanSplit.join('');
@@ -64,15 +64,27 @@ function checkForTrue() {
 
 }
 
-function checkCounts(){
+async function checkCounts() {
   console.log("checking");
-  if(guessCount === 0){
+  if (guessCount === 0) {
     guessBox.disabled = true;
     console.log("uh oh");
     outputSection.classList.add("incorrect");
     checkButton.disabled = true;
+    await sleep(4000);
+    console.log("2 sec pas");
+    outputSection.innerHTML = "Game Over";
+    outputSection.style.color = "red";
+    outputSection.classList.toggle("incorrect");
+    
   }
 }
+
+
+function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
 
 function checkUserRetry() {
   if (guessBox.value !== "") {
