@@ -38,10 +38,11 @@ function displayBars() {
 }
 
 function checkForTrue() {
-  const userGuess = document.getElementById("user-guess").value;
+  const userGuess = document.getElementById("user-guess").value.toLowerCase();
   console.log("working!");
   if (correctWord.includes(userGuess) && userGuess !== "") {
     console.log("it is true.");
+    
     let hangmanSplit = hangmanBarsMerge.split(""); // allows for iteration
     console.log(hangmanSplit);
     for (let i = 0; i < correctWord.length; i++) {
@@ -55,6 +56,10 @@ function checkForTrue() {
     hangmanContent.innerHTML = hangmanSplit.join('');
     hangmanBarsMerge = hangmanSplit.join(''); // to allow for repetition.
     guessBox.value = "";
+    checkForWin(hangmanSplit);
+    if (checkForWin(hangmanSplit) === true) {
+      return;
+    }
 
   } else {
     guessCount = guessCount - 1;
@@ -83,7 +88,12 @@ async function checkCounts() {
     outputSection.style.color = "red";
     outputSection.style.transition = "opacity 4s";
     outputSection.classList.toggle("incorrect");
-    
+    const revealedAnswer = document.createElement("p");
+    revealedAnswer.textContent = `The word was ${correctWord}.`;
+    revealedAnswer.style.color = "white";
+    revealedAnswer.style.fontSize = "20px";
+    outputSection.appendChild(revealedAnswer);
+
 
   }
 }
@@ -105,8 +115,8 @@ function checkWithEnter(e){
   }
 }
 
-checkForWin{
-  if(!hangmanSplit.includes("-")){
+function checkForWin(array) {
+  if(!array.includes("-")){
     console.log("Complete!");
     outputSection.innerHTML = '<span style="color: green">You Win!</span>';
     return true;
