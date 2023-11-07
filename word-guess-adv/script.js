@@ -1,4 +1,5 @@
-const words = ["sus", "amongus", "imposter"];
+const words = ["sus", "amongus", "imposter", "doctor", "kid", "milk", "honey", "job", "college",
+"baby", "children", "dog"];
 const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
 const checkButton = document.getElementById("check");
@@ -41,7 +42,7 @@ function checkForTrue() {
   console.log("working!");
   if (correctWord.includes(userGuess) && userGuess !== "") {
     console.log("it is true.");
-    let hangmanSplit = hangmanBarsMerge.split("");
+    let hangmanSplit = hangmanBarsMerge.split(""); // allows for iteration
     console.log(hangmanSplit);
     for (let i = 0; i < correctWord.length; i++) {
       if (seperateWords(correctWord)[i] === userGuess) {
@@ -52,7 +53,7 @@ function checkForTrue() {
 
     console.log(hangmanSplit);
     hangmanContent.innerHTML = hangmanSplit.join('');
-    hangmanBarsMerge = hangmanSplit.join('');
+    hangmanBarsMerge = hangmanSplit.join(''); // to allow for repetition.
     guessBox.value = "";
 
   } else {
@@ -103,6 +104,15 @@ function checkWithEnter(e){
     checkForTrue();
   }
 }
+
+checkForWin{
+  if(!hangmanSplit.includes("-")){
+    console.log("Complete!");
+    outputSection.innerHTML = '<span style="color: green">You Win!</span>';
+    return true;
+  }
+}
+
 
 // Starts it up
 generateHangmanBars(correctWord);
