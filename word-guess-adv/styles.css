@@ -2,7 +2,9 @@
   font-family: 'Futura Handwritten';
   src: url('FuturaHandwritten.ttf') format('truetype');
 }
-
+:root{
+  --iphone-width: 414px;
+}
 body{
     background-color: black;
     color: white;
@@ -21,7 +23,33 @@ body{
 #input-to-user{
   opacity: 100%;
   transition: 4s ease-in;
+  transform: translate(0, 20px);
 }
 #input-to-user.incorrect{
   opacity: 0%;
+  transition: 4s ease-in;
+}
+#hangman-content{
+  font-size: 20px;
+}
+#user-guess{
+  background-color: black;
+  text-decoration: none;
+  border-color: white;
+  box-shadow: none;
+  color: white;
+}
+#check{
+  text-decoration: none;
+  background-color: black;
+  color: white;
+  border-radius: 400px;
+  border-color: white;
+}
+@media only screen and (max-width: (--iphone-width)) and (orientation: portait){
+  body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

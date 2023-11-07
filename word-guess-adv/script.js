@@ -53,11 +53,14 @@ function checkForTrue() {
     console.log(hangmanSplit);
     hangmanContent.innerHTML = hangmanSplit.join('');
     hangmanBarsMerge = hangmanSplit.join('');
+    guessBox.value = "";
 
   } else {
     guessCount = guessCount - 1;
-    outputSection.innerHTML = `You have ${guessCount} guesses left.`
+    outputSection.innerHTML = `<span style="color: red;"> Incorrect.</span> <br>
+    You have ${guessCount} guesses left.`
     checkCounts();
+    guessBox.value = "";
   }
 
 
@@ -72,18 +75,22 @@ async function checkCounts() {
     outputSection.classList.add("incorrect");
     checkButton.disabled = true;
     await sleep(4000);
+    outputSection.style.transition = "none";
+    outputSection.style.fontSize = "40px";
     console.log("2 sec pas");
     outputSection.innerHTML = "Game Over";
     outputSection.style.color = "red";
+    outputSection.style.transition = "opacity 4s";
     outputSection.classList.toggle("incorrect");
     
+
   }
 }
 
 
 function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
 function checkUserRetry() {
@@ -91,9 +98,17 @@ function checkUserRetry() {
   }
 }
 
+function checkWithEnter(e){
+  if(e.key === "Enter"){
+    checkForTrue();
+  }
+}
 
 // Starts it up
 generateHangmanBars(correctWord);
 displayBars();
 
+outputSection.innerHTML = `You have ${guessCount} guesses left.`
+
 checkButton.addEventListener("click", checkForTrue);
+guessBox.addEventListener("keydown", checkWithEnter);
