@@ -1,5 +1,5 @@
 const words = ["sus", "amongus", "imposter", "doctor", "kid", "milk", "honey", "job", "college",
-"baby", "children", "dog"];
+  "baby", "children", "dog"];
 const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
 const checkButton = document.getElementById("check");
@@ -8,6 +8,7 @@ const hangmanContent = document.getElementById("hangman-content");
 let correctWord = words[Math.floor(Math.random() * words.length)]; // Random number from 1 to words length 
 console.log(correctWord);
 let guessCount = 6;
+let errorForUser = `<span style="color: red;"> You've already guessed that.</span>`
 const outputSection = document.getElementById("input-to-user");
 console.log(outputSection);
 
@@ -42,12 +43,22 @@ function checkForTrue() {
   console.log("working!");
   if (correctWord.includes(userGuess) && userGuess !== "") {
     console.log("it is true.");
-    
+
     let hangmanSplit = hangmanBarsMerge.split(""); // allows for iteration
     console.log(hangmanSplit);
     for (let i = 0; i < correctWord.length; i++) {
       if (seperateWords(correctWord)[i] === userGuess) {
-        hangmanSplit[i] = userGuess;
+        if(hangmanSplit.includes(userGuess)){
+          outputSection.innerHTML = errorForUser + `<br>
+          You have ${guessCount} guesses left.`;
+          errorForUser.style.transition = "1s";
+          errorForUser.style.opacity = "0";
+
+        }else{
+          hangmanSplit[i] = userGuess;
+          outputSection.innerHTML = `You have ${guessCount} guesses left.`
+        }
+        
       }
     }
 
@@ -80,9 +91,9 @@ async function checkCounts() {
     console.log("uh oh");
     outputSection.classList.add("incorrect");
     checkButton.disabled = true;
-    await sleep(4000);
+    await sleep(4000); // adds transition; pauses console.
     outputSection.style.transition = "none";
-    outputSection.style.fontSize = "40px";
+    outputSection.style.fontSize = "40px"; // game over text
     console.log("2 sec pas");
     outputSection.innerHTML = "Game Over";
     outputSection.style.color = "red";
@@ -104,19 +115,14 @@ function sleep(ms) {
 }
 
 
-function checkUserRetry() {
-  if (guessBox.value !== "") {
-  }
-}
-
-function checkWithEnter(e){
-  if(e.key === "Enter"){
+function checkWithEnter(e) {
+  if (e.key === "Enter" && guessBox.value !== "") {
     checkForTrue();
-  }
+  } 
 }
 
 function checkForWin(array) {
-  if(!array.includes("-")){
+  if (!array.includes("-")) {
     console.log("Complete!");
     outputSection.innerHTML = '<span style="color: green">You Win!</span>';
     return true;
