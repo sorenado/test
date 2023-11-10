@@ -8,9 +8,10 @@ const hangmanContent = document.getElementById("hangman-content");
 let correctWord = words[Math.floor(Math.random() * words.length)]; // Random number from 1 to words length 
 console.log(correctWord);
 let guessCount = 6;
-let errorForUser = `<span style="color: red;"> You've already guessed that.</span>`
 const outputSection = document.getElementById("input-to-user");
 console.log(outputSection);
+let guessedWords = [];
+let errorForUser = document.createElement("p");
 
 
 
@@ -47,25 +48,32 @@ function checkForTrue() {
     let hangmanSplit = hangmanBarsMerge.split(""); // allows for iteration
     console.log(hangmanSplit);
     for (let i = 0; i < correctWord.length; i++) {
-      if (seperateWords(correctWord)[i] === userGuess) {
-        if(hangmanSplit.includes(userGuess)){
-          outputSection.innerHTML = errorForUser + `<br>
-          You have ${guessCount} guesses left.`;
-          errorForUser.style.transition = "1s";
-          errorForUser.style.opacity = "0";
-
-        }else{
+      if (seperateWords(correctWord)[i] === userGuess && guessedWords.includes(userGuess)) {
+        errorForUser.style.opacity = "100%";
+        errorForUser.textContent = "You've already guessed that.";
+        errorForUser.style.color = "red";
+        errorForUser.style.padding = "0";
+        errorForUser.style.marginBottom = "6px";
+        errorForUser.style.marginTop = "1px";
+        errorForUser.style.display = "none";
+        outputSection.innerHTML = `You have ${guessCount} guesses left.`;
+        guessBox.value = "";
+        outputSection.insertBefore(errorForUser, outputSection.firstChild);
+        return;
+      } else if (seperateWords(correctWord) [i] === userGuess){
+          errorForUser.style.opacity = "0%";
           hangmanSplit[i] = userGuess;
-          outputSection.innerHTML = `You have ${guessCount} guesses left.`
-        }
-        
+          guessBox.value = "";
+      } else {
+        continue;
       }
     }
-
 
     console.log(hangmanSplit);
     hangmanContent.innerHTML = hangmanSplit.join('');
     hangmanBarsMerge = hangmanSplit.join(''); // to allow for repetition.
+    guessedWords.push(userGuess);
+    console.log(guessedWords);
     guessBox.value = "";
     checkForWin(hangmanSplit);
     if (checkForWin(hangmanSplit) === true) {
@@ -75,8 +83,9 @@ function checkForTrue() {
   } else {
     guessCount = guessCount - 1;
     outputSection.innerHTML = `<span style="color: red;"> Incorrect.</span> <br>
-    You have ${guessCount} guesses left.`
+    You have ${guessCount} guesses left.`;
     checkCounts();
+    guessedWords.push(userGuess.value);
     guessBox.value = "";
   }
 
@@ -125,6 +134,7 @@ function checkForWin(array) {
   if (!array.includes("-")) {
     console.log("Complete!");
     outputSection.innerHTML = '<span style="color: green">You Win!</span>';
+    guessBox.disabled = true;
     return true;
   }
 }
