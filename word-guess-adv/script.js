@@ -1,5 +1,5 @@
 const words = ["sus", "amongus", "imposter", "doctor", "kid", "milk", "honey", "job", "college",
-  "baby", "children", "dog"];
+  "baby", "children", "dog", "supercalifragilisticexpialidocious", "counterclockwise", "eat", "lynx", "rex", "document", "character", "selection", "outline"];
 const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
 const checkButton = document.getElementById("check");
