@@ -7,14 +7,22 @@
 </head>
 
 <body>
-	<h1>Enter a Letter!</h1>
-	<div id="hangman-content">
+	<div id="options-wrapper">
+		<div id="option-screen">
+			<div id="top-options">Select a difficulty</div>
+			<div id="difficulty"><button id="easy">Easy</button><button id="normal">Normal</button><button id="hard">Hard</button></div>
+			<div id="ok-selection"><button id="btn-ok">OK</button></div>
+		</div>
 	</div>
-	<input id="user-guess" placeholder="Enter a word!" maxlength="1" autocomplete="off">
-	<button id="check">Check!</button>
-	<div id="input-to-user"></div>
-
-	<script src="script.js"></script>
+      <div id="guessing">
+			<h1>Enter a Letter!</h1>
+			<div id="hangman-content">
+			</div>
+			<input id="user-guess" placeholder="Enter a word!" maxlength="1" autocomplete="off">
+			<button id="check">Check!</button>
+			<div id="input-to-user"></div>
+      </div>
+			<script src="script.js"></script>
 </body>
 
 </html>

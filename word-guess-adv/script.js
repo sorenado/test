@@ -1,11 +1,55 @@
 const words = ["sus", "amongus", "imposter", "doctor", "kid", "milk", "honey", "job", "college",
   "baby", "children", "dog", "supercalifragilisticexpialidocious", "counterclockwise", "eat", "lynx", "rex", "document", "character", "selection", "outline"];
+
+// collecting objects from HTML
 const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
 const checkButton = document.getElementById("check");
 const guessBox = document.getElementById("user-guess");
 const hangmanContent = document.getElementById("hangman-content");
+const guessingArea = document.getElementById("guessing");
+const difficultyScreen = document.getElementById("options-wrapper");
+const easyDiff = document.getElementById("easy");
+const normalDiff = document.getElementById("normal");
+const hardDiff = document.getElementById("hard");
+const okBtn = document.getElementById("btn-ok");
+
 let correctWord = words[Math.floor(Math.random() * words.length)]; // Random number from 1 to words length 
+
+// difficulty check
+let easyDiffCheck = 0;
+let normalDiffCheck = 0;
+let hardDiffCheck = 0;
+
+easyDiff.addEventListener("click", () => {
+  easyDiffCheck = 1;
+  normalDiffCheck = 0;
+  hardDiffCheck = 0;
+  console.log("easy selected.");
+});
+
+normalDiff.addEventListener("click", () => {
+  easyDiffCheck = 0;
+  normalDiffCheck = 1;
+  hardDiffCheck = 0;
+  console.log("normal selected.");
+});
+
+hardDiff.addEventListener("click", () => {
+  easyDiffCheck = 0;
+  normalDiffCheck = 0;
+  hardDiffCheck = 1;
+  console.log("hard selected.");
+});
+
+okBtn.addEventListener("click", () => {
+  difficultyScreen.style.display = "none";
+  console.log("done!");
+  guessingArea.classList.toggle("on");
+});
+
+//
+
 console.log(correctWord);
 let guessCount = 6;
 const outputSection = document.getElementById("input-to-user");
@@ -60,10 +104,10 @@ function checkForTrue() {
         guessBox.value = "";
         outputSection.insertBefore(errorForUser, outputSection.firstChild);
         return;
-      } else if (seperateWords(correctWord) [i] === userGuess){
-          errorForUser.style.opacity = "0%";
-          hangmanSplit[i] = userGuess;
-          guessBox.value = "";
+      } else if (seperateWords(correctWord)[i] === userGuess) {
+        errorForUser.style.opacity = "0%";
+        hangmanSplit[i] = userGuess;
+        guessBox.value = "";
       } else {
         continue;
       }
@@ -127,7 +171,7 @@ function sleep(ms) {
 function checkWithEnter(e) {
   if (e.key === "Enter" && guessBox.value !== "") {
     checkForTrue();
-  } 
+  }
 }
 
 function checkForWin(array) {

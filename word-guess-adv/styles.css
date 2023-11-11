@@ -59,3 +59,68 @@ body{
 #input-to-user p{
   transition: 2s;
 }
+
+#guessing{
+  z-index: 998;
+  display: none;
+}
+
+#guessing.on{
+  display: block;
+}
+
+#options-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Optional: set a specific height for vertical centering */
+  z-index: 999;
+}
+
+#option-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 7vh;
+  color: white;
+  width: 80%;
+  height: 80%;
+  border: 2px solid white;
+}
+
+#difficulty button {
+  width: 20vh;
+  height: 5vh;
+  font-size: 3vh;
+  transform: translateY(20vh);
+  text-decoration: none;
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  transition: 0.2s ease-out;
+}
+
+#option-screen button:hover{
+  background-color: white;
+  color: black
+}
+
+#ok-selection{
+  display: flex;
+  justify-content: center;
+  transform: translateY(50vh);
+  width: 100%;
+  height: 20%;
+}
+#ok-selection button{
+  background-color: black;
+  border: 2px solid white;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  width: 30vh;
+  font-size: 10vh;
+  transition: 0.3s ease-out;
+}
