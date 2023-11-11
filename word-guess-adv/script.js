@@ -1,6 +1,9 @@
-const words = ["sus", "amongus", "imposter", "doctor", "kid", "milk", "honey", "job", "college",
-  "baby", "children", "dog", "supercalifragilisticexpialidocious", "counterclockwise", "eat", "lynx", "rex", "document", "character", "selection", "outline"];
+easyWords = ["baby", "boy", "sus", "amongus", "imposter", "doctor", "kid", "milk", "honey"];
+normalWords = ["document", "character", "selection", "blackjack", "expedition"];
+hardWords = ["supercalifragilisticexpialidocious", "counterclockwise", "abandonment"];
 
+let words = ["job", "college",
+  "baby", "children", "dog",  "eat", "lynx", "rex", "outline"];
 // collecting objects from HTML
 const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
@@ -13,8 +16,10 @@ const easyDiff = document.getElementById("easy");
 const normalDiff = document.getElementById("normal");
 const hardDiff = document.getElementById("hard");
 const okBtn = document.getElementById("btn-ok");
-
-let correctWord = words[Math.floor(Math.random() * words.length)]; // Random number from 1 to words length 
+let hangmanBarsMerge;
+let hangmanBars = [];
+let correctWord;
+ 
 
 // difficulty check
 let easyDiffCheck = 0;
@@ -25,6 +30,9 @@ easyDiff.addEventListener("click", () => {
   easyDiffCheck = 1;
   normalDiffCheck = 0;
   hardDiffCheck = 0;
+  easyDiff.classList.add("clic");
+  normalDiff.classList.remove("clic");
+  hardDiff.classList.remove("clic");
   console.log("easy selected.");
 });
 
@@ -32,6 +40,9 @@ normalDiff.addEventListener("click", () => {
   easyDiffCheck = 0;
   normalDiffCheck = 1;
   hardDiffCheck = 0;
+  normalDiff.classList.add("clic");
+  easyDiff.classList.remove("clic");
+  hardDiff.classList.remove("clic");
   console.log("normal selected.");
 });
 
@@ -39,16 +50,50 @@ hardDiff.addEventListener("click", () => {
   easyDiffCheck = 0;
   normalDiffCheck = 0;
   hardDiffCheck = 1;
+  hardDiff.classList.add("clic");
+  normalDiff.classList.remove("clic");
+  easyDiff.classList.remove("clic");
   console.log("hard selected.");
 });
 
 okBtn.addEventListener("click", () => {
-  difficultyScreen.style.display = "none";
-  console.log("done!");
-  guessingArea.classList.toggle("on");
+  
+  
+  if(easyDiffCheck === 1){
+    words = easyWords;
+    difficultyScreen.style.display = "none";
+    guessingArea.classList.toggle("on");
+    console.log("done!");
+  } else if (normalDiffCheck === 1){
+    words = normalWords;
+    difficultyScreen.style.display = "none";
+    guessingArea.classList.toggle("on");
+    console.log("done!");
+  } else if (hardDiffCheck === 1){
+    words = hardWords;
+    difficultyScreen.style.display = "none";
+    console.log("done!");
+    guessingArea.classList.toggle("on");
+  } else {
+    console.log("haven't selected a difficulty");
+    let noDiffSelect = document.createElement("p");
+    
+  }
+  correctWord = words[Math.floor(Math.random() * words.length)]; // Random number from 1 to words length
+  console.log(correctWord);
+
+  generateHangmanBars(correctWord);
+  displayBars();
+
+  outputSection.innerHTML = `You have ${guessCount} guesses left.`
+
+  checkButton.addEventListener("click", checkForTrue);
+  guessBox.addEventListener("keydown", checkWithEnter);
+
+
 });
 
-//
+
 
 console.log(correctWord);
 let guessCount = 6;
@@ -68,8 +113,7 @@ function seperateWords(words) {
 };
 
 
-let hangmanBarsMerge;
-let hangmanBars = [];
+
 function generateHangmanBars(word) {
   for (let i = 0; i < word.length; i++) {
     hangmanBars[i] = "-";
@@ -185,10 +229,3 @@ function checkForWin(array) {
 
 
 // Starts it up
-generateHangmanBars(correctWord);
-displayBars();
-
-outputSection.innerHTML = `You have ${guessCount} guesses left.`
-
-checkButton.addEventListener("click", checkForTrue);
-guessBox.addEventListener("keydown", checkWithEnter);

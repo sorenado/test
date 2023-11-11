@@ -124,3 +124,8 @@ body{
   font-size: 10vh;
   transition: 0.3s ease-out;
 }
+
+#easy.clic, #normal.clic, #hard.clic{
+  background-color: white;
+  color: black;
+}
