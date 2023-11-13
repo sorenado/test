@@ -129,3 +129,11 @@ body{
   background-color: white;
   color: black;
 }
+
+#retry{
+  height: 10vh;
+  width: 20vh;
+  background-color: black;
+  border: 2px solid white;
+  color: white;
+}
