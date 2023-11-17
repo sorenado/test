@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     displayBars();
 
     guessBox.disabled = false;
-    checkButton.disabled = true;
+    checkButton.disabled = false;
 
     outputSection.innerHTML = `You have ${guessCount} guesses left.`
 
