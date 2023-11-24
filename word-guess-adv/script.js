@@ -103,15 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     checkButton.addEventListener("click", noCharEntered);
 
-    guessBox.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && guessBox.value.trim() === "") {
-        noCharEntered();
-      } else {
-        checkWithEnter(e);
-      }
-    });
+    guessBox.addEventListener("keydown", handleNoCharWithEnter);
   });
-
 
 
   console.log(correctWord);
@@ -149,7 +142,13 @@ document.addEventListener("DOMContentLoaded", () => {
     guessBox.focus();
   };
 
-
+  function handleNoCharWithEnter(e){
+    if (e.key === "Enter" && guessBox.value.trim() === "") {
+      noCharEntered();
+    } else {
+      checkWithEnter(e);
+    }
+  }
   let spaced;
   // Spaces the word so each individual character can be checked
   function seperateWords(words) {
@@ -305,9 +304,11 @@ document.addEventListener("DOMContentLoaded", () => {
     guessCount = 6;
     guessedWords = new Set();
     logGuessedWords();
-    outputSection.after(breakedElem, guessedWordsOutput)
+    guessBox.removeEventListener("keydown", handleNoCharWithEnter);
 
-  }
+    outputSection.after(breakedElem, guessedWordsOutput);
+
+  };
 
 
 
