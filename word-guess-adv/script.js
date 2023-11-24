@@ -257,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
       outputSection.appendChild(revealedAnswer);
       const btnForRetry = document.createElement("button");
       btnForRetry.id = "retry";
+      btnForRetry.textContent = "Retry";
       outputSection.appendChild(btnForRetry);
       const retryBtn = document.getElementById("retry");
       console.log(retryBtn);
