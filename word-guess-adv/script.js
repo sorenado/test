@@ -125,6 +125,15 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(outputSection);
   let guessedWords = [];
   let errorForUser = document.createElement("p");
+  guessBox.addEventListener("keydown", (e) => {
+    if(errorForUser !== ""){
+      errorForUser.textContent = "";
+      
+    }
+    if(e.key !== "Backspace"){
+      outputSection.innerHTML = `You have ${guessCount} guesses left.`;
+    }
+  });
 
 
 
@@ -168,13 +177,11 @@ document.addEventListener("DOMContentLoaded", () => {
           errorForUser.style.padding = "0";
           errorForUser.style.marginBottom = "6px";
           errorForUser.style.marginTop = "1px";
-          errorForUser.style.display = "none";
           outputSection.innerHTML = `You have ${guessCount} guesses left.`;
           guessBox.value = "";
           outputSection.insertBefore(errorForUser, outputSection.firstChild);
           return;
         } else if (seperateWords(correctWord)[i] === userGuess) {
-          errorForUser.style.opacity = "0%";
           hangmanSplit[i] = userGuess;
           console.log(hangmanSplit);
           guessBox.value = "";
@@ -194,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-    } else {
+    } else { // if not in the word
       guessCount = guessCount - 1;
       outputSection.innerHTML = `<span style="color: red;"> Incorrect.</span> <br>
       You have ${guessCount} guesses left.`;
@@ -204,10 +211,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
   }
 
-  async function checkCounts() {
+
+  async function checkCounts() { // game over
     console.log("checking");
     if (guessCount === 0) {
       guessBox.disabled = true;
@@ -239,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function sleep(ms) {
+  function sleep(ms) { // allows for css transition to take place
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
