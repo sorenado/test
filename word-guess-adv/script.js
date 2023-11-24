@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   easyWords = ["baby", "boy", "sus", "amongus", "imposter", "doctor", "kid", "milk", "honey"];
   normalWords = ["document", "character", "selection", "blackjack", "expedition"];
-  hardWords = ["supercalifragilisticexpialidocious", "counterclockwise", "abandonment"];
+  hardWords = ["supercalifragilisticexpialidocious", "counterclockwise", "abandonment", "entrepreneurship", r];
 
   let words = ["job", "college",
     "baby", "children", "dog",  "eat", "lynx", "rex", "outline"];
