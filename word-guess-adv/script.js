@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   hardWords = ["supercalifragilisticexpialidocious", "counterclockwise", "abandonment", "entrepreneurship"];
 
   let words = ["job", "college",
-    "baby", "children", "dog",  "eat", "lynx", "rex", "outline"];
+    "baby", "children", "dog", "eat", "lynx", "rex", "outline"];
   // collecting objects from HTML
   const correct = document.getElementById("correct");
   const incorrect = document.getElementById("incorrect");
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let hangmanBarsMerge;
   let hangmanBars = [];
   let correctWord;
-  
+
 
   // difficulty check
   let easyDiffCheck = 0;
@@ -60,19 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   okBtn.addEventListener("click", () => {
-    
-    
-    if(easyDiffCheck === 1){
+
+
+    if (easyDiffCheck === 1) {
       words = easyWords;
       difficultyScreen.style.display = "none";
       guessingArea.classList.toggle("on");
       console.log("done!");
-    } else if (normalDiffCheck === 1){
+    } else if (normalDiffCheck === 1) {
       words = normalWords;
       difficultyScreen.style.display = "none";
       guessingArea.classList.toggle("on");
       console.log("done!");
-    } else if (hardDiffCheck === 1){
+    } else if (hardDiffCheck === 1) {
       words = hardWords;
       difficultyScreen.style.display = "none";
       console.log("done!");
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       console.log("haven't selected a difficulty");
       let noDiffSelect = document.createElement("p");
-      
+
     }
     correctWord = words[Math.floor(Math.random() * words.length)]; // Random number from 1 to words length
     console.log(correctWord);
@@ -93,10 +93,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     guessBox.disabled = false;
     checkButton.disabled = false;
-
+    guessBox.focus();
     outputSection.innerHTML = `You have ${guessCount} guesses left.`
 
-    checkButton.addEventListener("click", checkForTrue);
+    checkButton.addEventListener("click", () => {
+      if(guessBox.value !== "" && guessBox.value !== " "){
+        checkForTrue();
+        
+
+      }else { // user hasn't input anything
+        outputSection.innerHTML = `<span style="color: red;">Enter a Letter!</span>`
+        setTimeout(() => {
+          outputSection.innerHTML = `You have ${guessCount} guesses left.`
+        }, 1000);
+        
+      }
+      guessBox.value = "";
+      guessBox.focus();
+    });
+        
     guessBox.addEventListener("keydown", checkWithEnter);
 
 
@@ -239,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!array.includes("-")) {
       console.log("Complete!");
 
-      
+
       outputSection.innerHTML = '<span style="color: green">You Win!</span><br><button id="retry">Retry</button>';
       guessBox.disabled = true;
       const retryBtn = document.getElementById("retry");
@@ -252,14 +267,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // to retry
 
-  function userRestart(){
+  function userRestart() {
     console.log("retry");
     guessingArea.classList.toggle("on");
     difficultyScreen.style.display = "flex";
     outputSection.style.fontSize = "16px";
     outputSection.style.color = "white";
     guessCount = 6;
-    
+
   }
 
 
