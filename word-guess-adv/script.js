@@ -19,6 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const hardDiff = document.getElementById("hard");
   const okBtn = document.getElementById("btn-ok");
 
+
+  let guessedWordsOutput = document.createElement("p");
+
+
+
+
   let hangmanBarsMerge;
   let hangmanBars = [];
   let correctWord;
@@ -87,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
     hangmanBars = [];
     hangmanBarsMerge = undefined;
     spaced = undefined;
-    guessedWords = [];
     generateHangmanBars(correctWord);
     displayBars();
 
@@ -96,25 +101,15 @@ document.addEventListener("DOMContentLoaded", () => {
     guessBox.focus();
     outputSection.innerHTML = `You have ${guessCount} guesses left.`
 
-    checkButton.addEventListener("click", () => {
-      if(guessBox.value !== "" && guessBox.value !== " "){
-        checkForTrue();
-        
+    checkButton.addEventListener("click", noCharEntered);
 
-      }else { // user hasn't input anything
-        outputSection.innerHTML = `<span style="color: red;">Enter a Letter!</span>`
-        setTimeout(() => {
-          outputSection.innerHTML = `You have ${guessCount} guesses left.`
-        }, 1000);
-        
+    guessBox.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && guessBox.value.trim() === "") {
+        noCharEntered();
+      } else {
+        checkWithEnter(e);
       }
-      guessBox.value = "";
-      guessBox.focus();
     });
-        
-    guessBox.addEventListener("keydown", checkWithEnter);
-
-
   });
 
 
@@ -123,7 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let guessCount = 6;
   const outputSection = document.getElementById("input-to-user");
   console.log(outputSection);
-  let guessedWords = [];
+  let guessedWords = new Set();
+  guessedWordsOutput.textContent = `You've guessed: ${Array.from(guessedWords)}`;
+  let breakedElem = document.createElement("br");
+  outputSection.after(breakedElem, guessedWordsOutput);
   let errorForUser = document.createElement("p");
   guessBox.addEventListener("keydown", (e) => {
     if(errorForUser !== ""){
@@ -135,7 +133,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  function noCharEntered(){
+    if (guessBox.value !== "" && guessBox.value !== " ") {
+      checkForTrue();
 
+
+    } else { // user hasn't input anything
+      outputSection.innerHTML = `<span style="color: red;">Enter a Letter!</span>`
+      setTimeout(() => {
+        outputSection.innerHTML = `You have ${guessCount} guesses left.`
+      }, 1000);
+
+    }
+    guessBox.value = "";
+    guessBox.focus();
+  };
 
 
   let spaced;
@@ -162,6 +174,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkForTrue() {
     const userGuess = document.getElementById("user-guess").value.toLowerCase();
+    if (Array.from(guessedWords).includes(userGuess)) {
+      console.log("Already guessesed");
+      errorForUser.style.opacity = "100%";
+      errorForUser.textContent = "You've already guessed that.";
+      errorForUser.style.color = "red";
+      errorForUser.style.padding = "0";
+      errorForUser.style.marginBottom = "6px";
+      errorForUser.style.marginTop = "1px";
+      outputSection.innerHTML = `You have ${guessCount} guesses left.`;
+      guessBox.value = "";
+      outputSection.insertBefore(errorForUser, outputSection.firstChild);
+      return;
+    }
+
     console.log("working!");
     if (correctWord.includes(userGuess) && userGuess !== "") {
       console.log("it is true.");
@@ -169,19 +195,8 @@ document.addEventListener("DOMContentLoaded", () => {
       let hangmanSplit = hangmanBarsMerge.split(""); // allows for iteration
       console.log(hangmanSplit);
       for (let i = 0; i < correctWord.length; i++) {
-        if (seperateWords(correctWord)[i] === userGuess && guessedWords.includes(userGuess)) {
-          console.log("Already guessesed");
-          errorForUser.style.opacity = "100%";
-          errorForUser.textContent = "You've already guessed that.";
-          errorForUser.style.color = "red";
-          errorForUser.style.padding = "0";
-          errorForUser.style.marginBottom = "6px";
-          errorForUser.style.marginTop = "1px";
-          outputSection.innerHTML = `You have ${guessCount} guesses left.`;
-          guessBox.value = "";
-          outputSection.insertBefore(errorForUser, outputSection.firstChild);
-          return;
-        } else if (seperateWords(correctWord)[i] === userGuess) {
+        
+        if (seperateWords(correctWord)[i] === userGuess) {
           hangmanSplit[i] = userGuess;
           console.log(hangmanSplit);
           guessBox.value = "";
@@ -193,8 +208,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(hangmanSplit);
       hangmanContent.innerHTML = hangmanSplit.join('');
       hangmanBarsMerge = hangmanSplit.join(''); // to allow for repetition.
-      guessedWords.push(userGuess);
+      guessedWords.add(userGuess);
       console.log(guessedWords);
+      logGuessedWords();
       guessBox.value = "";
       checkForWin(hangmanSplit);
       if (checkForWin(hangmanSplit) === true) {
@@ -206,19 +222,24 @@ document.addEventListener("DOMContentLoaded", () => {
       outputSection.innerHTML = `<span style="color: red;"> Incorrect.</span> <br>
       You have ${guessCount} guesses left.`;
       checkCounts();
-      guessedWords.push(userGuess.value);
+      guessedWords.add(userGuess);
+      console.log(guessedWords);
+      logGuessedWords();
       guessBox.value = "";
     }
 
 
   }
-
+  function logGuessedWords(){
+    guessedWordsOutput.textContent = `You've guessed: ${Array.from(guessedWords).sort()}`;
+  }
 
   async function checkCounts() { // game over
     console.log("checking");
     if (guessCount === 0) {
       guessBox.disabled = true;
       console.log("uh oh");
+      outputSection.appendChild(guessedWordsOutput);
       outputSection.classList.add("incorrect");
       checkButton.disabled = true;
       await sleep(4000); // adds transition; pauses console.
@@ -281,6 +302,9 @@ document.addEventListener("DOMContentLoaded", () => {
     outputSection.style.fontSize = "16px";
     outputSection.style.color = "white";
     guessCount = 6;
+    guessedWords = new Set();
+    logGuessedWords();
+    outputSection.after(breakedElem, guessedWordsOutput)
 
   }
 
