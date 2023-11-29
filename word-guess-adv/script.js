@@ -285,6 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       outputSection.innerHTML = '<span style="color: green">You Win!</span><br><button id="retry">Retry</button>';
       guessBox.disabled = true;
+      checkButton.disabled = true;
       const retryBtn = document.getElementById("retry");
       console.log(retryBtn);
 
