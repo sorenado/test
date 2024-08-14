@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  easyWords = ["baby", "boy", "sus", "amongus", "imposter", "doctor", "kid", "milk", "honey"];
-  normalWords = ["document", "character", "selection", "blackjack", "expedition"];
-  hardWords = ["supercalifragilisticexpialidocious", "counterclockwise", "abandonment", "entrepreneurship"];
+  const easyWords = ["baby", "boy", "toy", "imposter", "doctor", "kid", "milk", "honey"];
+  const normalWords = ["document", "character", "selection", "blackjack", "expedition"];
+  const hardWords = ["supercalifragilisticexpialidocious", "counterclockwise", "abandonment", "entrepreneurship"];
 
   let words = ["job", "college",
     "baby", "children", "dog", "eat", "lynx", "rex", "outline"];
   // collecting objects from HTML
+  /*
   const correct = document.getElementById("correct");
   const incorrect = document.getElementById("incorrect");
   const checkButton = document.getElementById("check");
@@ -18,10 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const normalDiff = document.getElementById("normal");
   const hardDiff = document.getElementById("hard");
   const okBtn = document.getElementById("btn-ok");
+*/
+  const els = ["correct", "incorrect", "checkButton", "guessBox", "hangmanContent", "guessingArea", "difficultyScreen", "easyDiff", "normalDiff", "hardDiff", "okBtn"]
 
+  let dom = {}
+  
+  for (let i = 0; i < els.length; i++) {
+    let el = els[i]
+    dom[el] = document.getElementById(el)
+  }
 
   let guessedWordsOutput = document.createElement("p");
-
 
 
 
@@ -35,54 +43,54 @@ document.addEventListener("DOMContentLoaded", () => {
   let normalDiffCheck = 0;
   let hardDiffCheck = 0;
 
-  easyDiff.addEventListener("click", () => {
+  dom.easyDiff.addEventListener("click", () => {
     easyDiffCheck = 1;
     normalDiffCheck = 0;
     hardDiffCheck = 0;
-    easyDiff.classList.add("clic");
-    normalDiff.classList.remove("clic");
-    hardDiff.classList.remove("clic");
+    dom.easyDiff.classList.add("clic");
+    dom.normalDiff.classList.remove("clic");
+    dom.hardDiff.classList.remove("clic");
     console.log("easy selected.");
   });
 
-  normalDiff.addEventListener("click", () => {
+  dom.normalDiff.addEventListener("click", () => {
     easyDiffCheck = 0;
     normalDiffCheck = 1;
     hardDiffCheck = 0;
-    normalDiff.classList.add("clic");
-    easyDiff.classList.remove("clic");
-    hardDiff.classList.remove("clic");
+    dom.normalDiff.classList.add("clic");
+    dom.easyDiff.classList.remove("clic");
+    dom.hardDiff.classList.remove("clic");
     console.log("normal selected.");
   });
 
-  hardDiff.addEventListener("click", () => {
+  dom.hardDiff.addEventListener("click", () => {
     easyDiffCheck = 0;
     normalDiffCheck = 0;
     hardDiffCheck = 1;
-    hardDiff.classList.add("clic");
-    normalDiff.classList.remove("clic");
-    easyDiff.classList.remove("clic");
+    dom.hardDiff.classList.add("clic");
+    dom.normalDiff.classList.remove("clic");
+    dom.easyDiff.classList.remove("clic");
     console.log("hard selected.");
   });
 
-  okBtn.addEventListener("click", () => {
+  dom.okBtn.addEventListener("click", () => {
 
 
     if (easyDiffCheck === 1) {
       words = easyWords;
-      difficultyScreen.style.display = "none";
-      guessingArea.classList.toggle("on");
+      dom.difficultyScreen.style.display = "none";
+      dom.guessingArea.classList.toggle("on");
       console.log("done!");
     } else if (normalDiffCheck === 1) {
       words = normalWords;
-      difficultyScreen.style.display = "none";
-      guessingArea.classList.toggle("on");
+      dom.difficultyScreen.style.display = "none";
+      dom.guessingArea.classList.toggle("on");
       console.log("done!");
     } else if (hardDiffCheck === 1) {
       words = hardWords;
-      difficultyScreen.style.display = "none";
+      dom.difficultyScreen.style.display = "none";
       console.log("done!");
-      guessingArea.classList.toggle("on");
+      dom.guessingArea.classList.toggle("on");
     } else {
       console.log("haven't selected a difficulty");
       let noDiffSelect = document.createElement("p");
@@ -96,14 +104,14 @@ document.addEventListener("DOMContentLoaded", () => {
     generateHangmanBars(correctWord);
     displayBars();
 
-    guessBox.disabled = false;
-    checkButton.disabled = false;
-    guessBox.focus();
-    outputSection.innerHTML = `You have ${guessCount} guesses left.`
+    dom.guessBox.disabled = false;
+    dom.checkButton.disabled = false;
+    dom.guessBox.focus();
+    dom.outputSection.innerHTML = `You have ${guessCount} guesses left.`
 
-    checkButton.addEventListener("click", noCharEntered);
+    dom.checkButton.addEventListener("click", noCharEntered);
 
-    guessBox.addEventListener("keydown", handleNoCharWithEnter);
+    dom.guessBox.addEventListener("keydown", handleNoCharWithEnter);
   });
 
 
@@ -112,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const outputSection = document.getElementById("input-to-user");
   console.log(outputSection);
   let guessedWords = new Set();
-  guessedWordsOutput.textContent = `You've guessed: ${Array.from(guessedWords)}`;
+  dom.guessedWordsOutput.textContent = `You've guessed: ${Array.from(guessedWords)}`;
   let breakedElem = document.createElement("br");
   outputSection.after(breakedElem, guessedWordsOutput);
   let errorForUser = document.createElement("p");
