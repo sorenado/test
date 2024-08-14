@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const easyWords = ["baby", "boy", "toy", "imposter", "doctor", "kid", "milk", "honey"];
-  const normalWords = ["document", "character", "selection", "blackjack", "expedition"];
-  const hardWords = ["supercalifragilisticexpialidocious", "counterclockwise", "abandonment", "entrepreneurship"];
+  easyWords = ["baby", "boy", "sus", "amongus", "imposter", "doctor", "kid", "milk", "honey"];
+  normalWords = ["document", "character", "selection", "blackjack", "expedition"];
+  hardWords = ["supercalifragilisticexpialidocious", "counterclockwise", "abandonment", "entrepreneurship"];
 
   let words = ["job", "college",
     "baby", "children", "dog", "eat", "lynx", "rex", "outline"];
@@ -18,10 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const normalDiff = document.getElementById("normal");
   const hardDiff = document.getElementById("hard");
   const okBtn = document.getElementById("btn-ok");
-
-  let dom = {}
-  
-
 
 
   let guessedWordsOutput = document.createElement("p");
